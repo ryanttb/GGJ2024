@@ -24,7 +24,7 @@ BIOME_WIDTH = 608
 BIOME_HEIGHT = 152
 BIOME_MARGIN = 20  # Margin between biomes
 
-NUM_HUMANS = 2
+NUM_HUMANS = 1
 
 # Colors
 WHITE = (255, 255, 255)
@@ -59,10 +59,11 @@ def load_humans(num_humans):
     humans = []
 
     for i in range(1, num_humans + 1):
-        filename = f"human-{i:03d}.jpg"
+        filename = f"human-{i:03d}.png"
         print(filename)
 
         image = pygame.image.load(filename)
+        #image.set_colorkey((255, 255, 255))
         humans.append(image)
 
     return humans
@@ -70,11 +71,13 @@ def load_humans(num_humans):
 
 # Game state
 grid_view = True
-cur_human = 1
+cur_human = 0
 
 biomes = create_biomes()
 
 humans = load_humans(NUM_HUMANS)
+
+laugh_box = pygame.image.load("laugh-box-scaled.png")
 
 def draw_path():
     for x in range(SCREEN_WIDTH // PATH_SPRITE_SIZE):
@@ -89,14 +92,15 @@ def draw_biomes():
 def draw_back_button():
     pygame.draw.rect(screen, GRAY, (SCREEN_WIDTH - BUTTON_WIDTH, SCREEN_HEIGHT - BUTTON_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT))
     font = pygame.font.Font(None, 36)
-    text = font.render("Back", True, BLACK)
+    text = font.render("DONE", True, BLACK)
     screen.blit(text, (SCREEN_WIDTH - BUTTON_WIDTH + 20, SCREEN_HEIGHT - BUTTON_HEIGHT + 10))
 
 def draw_human_edit_screen():
     screen.fill(WHITE)
     # Add elements for the new screen as needed
 
-    screen.blit(humans[cur_human], (SCREEN_RECT[0] - humans[cur_human].get_rect().width, 0))
+    screen.blit(humans[cur_human], (48, 128))
+    screen.blit(laugh_box, (0, 0))
 
     draw_back_button()
 
