@@ -2,7 +2,6 @@ import os
 from openai import OpenAI
 client = OpenAI()
 
-# export OPENAI_API_KEY=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
 OpenAI.api_key = os.getenv('OPENAI_API_KEY')
 
 response = client.completions.create(
