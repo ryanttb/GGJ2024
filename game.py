@@ -33,6 +33,7 @@ pygame.display.set_caption("AI Laughs At You")
 
 # Load the dirt texture
 dirt_texture = pygame.image.load("dirt.png")
+texture_rect = dirt_texture.get_rect()
 
 # Game state
 grid_view = True
@@ -54,14 +55,28 @@ def load_humans(num_humans):
 # Load humans
 humans = load_humans(NUM_HUMANS)
 
+def draw_path():
+    for x in range(SCREEN_WIDTH // BORDER_SIZE):
+        for y in range(SCREEN_HEIGHT // BORDER_SIZE):
+            texture_rect.topleft = (x * BORDER_SIZE, y * BORDER_SIZE)
+            screen.blit(dirt_texture, texture_rect)
+
 def draw_grid():
     for row in range(GRID_ROWS):
         for col in range(GRID_COLS):
             pygame.draw.rect(screen, WHITE, (col * CELL_WIDTH, row * CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT))
             pygame.draw.rect(screen, BROWN, (col * CELL_WIDTH, row * CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT), BORDER_SIZE)
-            texture_rect = dirt_texture.get_rect()
-            texture_rect.topleft = (col * CELL_WIDTH, row * CELL_HEIGHT)
-            screen.blit(dirt_texture, texture_rect)
+
+            for i in range(0, CELL_WIDTH // BORDER_SIZE):
+                texture_rect.topleft = (col * CELL_WIDTH + (BORDER_SIZE * i), row * CELL_HEIGHT)
+                screen.blit(dirt_texture, texture_rect)
+
+                texture_rect.top = texture_rect.top + (CELL_HEIGHT * BORDER_SIZE)
+                screen.blit(dirt_texture, texture_rect)
+
+            for i in range(0, CELL_HEIGHT // BORDER_SIZE):
+                texture_rect.topleft = (col * CELL_WIDTH, row * CELL_HEIGHT + (BORDER_SIZE * i))
+                screen.blit(dirt_texture, texture_rect)
 
 def draw_back_button():
     pygame.draw.rect(screen, GRAY, (SCREEN_WIDTH - BUTTON_WIDTH, SCREEN_HEIGHT - BUTTON_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT))
@@ -100,6 +115,7 @@ def main():
 
         if grid_view:
             screen.fill(WHITE)
+            #draw_path()
             draw_grid()
         else:
             draw_human_edit_screen()
