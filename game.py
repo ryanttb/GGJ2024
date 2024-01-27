@@ -17,8 +17,11 @@ BUTTON_HEIGHT = 50
 
 PATH_SPRITE_SIZE = 16
 
-BIOME_WIDTH = 280
-BIOME_HEIGHT = 160
+BIOME_GRID_ROWS = 4
+BIOME_GRID_COLS = 2
+
+BIOME_WIDTH = 608
+BIOME_HEIGHT = 152
 BIOME_MARGIN = 20  # Margin between biomes
 
 NUM_HUMANS = 2
@@ -27,7 +30,7 @@ NUM_HUMANS = 2
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 GRAY = (150, 150, 150)
-BROWN = (139, 69, 19)  # Brown color for the path
+BROWN = (139, 69, 19)
 
 # Create the display surface
 screen = pygame.display.set_mode(SCREEN_RECT)
@@ -40,18 +43,16 @@ texture_rect = dirt_texture.get_rect()
 # Create eight biomes, arranging the second set below the first
 def create_biomes():
     biomes = []
-    for i in range(8):
-        if i < 4:
+
+    for row in range(BIOME_GRID_ROWS):
+        for col in range(BIOME_GRID_COLS):
+            x = (BIOME_MARGIN * (col + 1)) + col * BIOME_WIDTH
+            y = (BIOME_MARGIN * (row + 1)) + row * BIOME_HEIGHT
             rect = pygame.Rect(
-                (i * (BIOME_WIDTH + BIOME_MARGIN) + BIOME_MARGIN, SCREEN_HEIGHT // 4 - BIOME_HEIGHT),
+                (x, y),
                 (BIOME_WIDTH, BIOME_HEIGHT)
             )
-        else:
-            rect = pygame.Rect(
-                ((i - 4) * (BIOME_WIDTH + BIOME_MARGIN) + BIOME_MARGIN, (SCREEN_HEIGHT // 2) + BIOME_MARGIN),
-                (BIOME_WIDTH, BIOME_HEIGHT)
-            )
-        biomes.append(rect)
+            biomes.append(rect)
     return biomes
 
 def load_humans(num_humans):
