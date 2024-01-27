@@ -31,6 +31,9 @@ BROWN = (139, 69, 19)  # Brown color for the path
 screen = pygame.display.set_mode(SCREEN_RECT)
 pygame.display.set_caption("AI Laughs At You")
 
+# Load the dirt texture
+dirt_texture = pygame.image.load("dirt.png")
+
 # Game state
 grid_view = True
 cur_human = 1
@@ -56,6 +59,9 @@ def draw_grid():
         for col in range(GRID_COLS):
             pygame.draw.rect(screen, WHITE, (col * CELL_WIDTH, row * CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT))
             pygame.draw.rect(screen, BROWN, (col * CELL_WIDTH, row * CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT), BORDER_SIZE)
+            texture_rect = dirt_texture.get_rect()
+            texture_rect.topleft = (col * CELL_WIDTH, row * CELL_HEIGHT)
+            screen.blit(dirt_texture, texture_rect)
 
 def draw_back_button():
     pygame.draw.rect(screen, GRAY, (SCREEN_WIDTH - BUTTON_WIDTH, SCREEN_HEIGHT - BUTTON_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT))
