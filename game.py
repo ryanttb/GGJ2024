@@ -64,19 +64,23 @@ BG01S = [
 BG02S = [
     "TURNED ADVENTURER",    #00
     "SEEKING REDEMPTION",   #01
-    "RAISED BY WOLVES",     #02 "TURNED REBEL LEADER",  #03
+    "RAISED BY WOLVES",     #02 
+    "TURNED REBEL LEADER",  #03
     "SEEKING VENGEANCE",    #04
     "WITH PROPHECY POWERS", #05
 ]
 
 ALL_COMMENTS = {
     (0, 0, 0): [
-        "is this data",
-        "idk",
+        "You think this is tough? Try walking a tightrope over a pit of lions while angry! Now THAT was an adventure!",
+		"I used to juggle flaming torches for a living, and now I'm dealing with these ridiculous monsters? What a circus my life has become!",
+		"These dungeons are like a never-ending clown car of surprises. Just when you think you've seen it all, out pops another ridiculous creature!",
+		"I'll show those monsters what a real 'big top' is all about! Prepare to be amazed, you overgrown carnival rejects!",
+		"I've tamed lions, tigers, and bears in the circus, but these dungeons are a whole different kind of animal!",
+		"Step right up, folks! Watch me turn these foes into confetti with my trusty sword! It's all in a day's work for a circus performer turned adventurer!",
     ],
     (0, 0, 1): [
-        "somethign to say",
-        "not important",
+        "I swear, if I don't find redemption soon, I'll unleash my circus lion on you!"
     ],
     (0, 0, 2): [
     ],
@@ -85,6 +89,7 @@ ALL_COMMENTS = {
     (0, 0, 4): [
     ],
     (0, 0, 5): [
+        "My prophecy powers foretell a clown car full of angry clowns. Be afraid!"
     ],
     (0, 1, 0): [
     ],
@@ -221,6 +226,7 @@ ALL_COMMENTS = {
     (1, 1, 0): [
     ],
     (1, 1, 1): [
+        "I used to mix potions to find happiness. Now, I'm just mixing them to find a way to say sorry."
     ],
     (1, 1, 2): [
     ],
@@ -513,6 +519,7 @@ ALL_COMMENTS = {
     (3, 3, 2): [
     ],
     (3, 3, 3): [
+        "From the stars to the bars! Leading a rebellion with a smile, one small step at a time!"
     ],
     (3, 3, 4): [
     ],
@@ -671,6 +678,7 @@ ALL_COMMENTS = {
     (4, 4, 3): [
     ],
     (4, 4, 4): [
+        "A noble by day, a vengeance seeker by night. My life’s more twisted than a royal family tree."
     ],
     (4, 4, 5): [
     ],
@@ -817,6 +825,7 @@ ALL_COMMENTS = {
     (5, 5, 4): [
     ],
     (5, 5, 5): [
+        "I see a future where my art is famous... or was that just another odd dream?"
     ],
     (5, 6, 0): [
     ],
@@ -863,6 +872,8 @@ ALL_COMMENTS = {
     (5, 9, 3): [
     ],
     (5, 9, 4): [
+        "I've sailed the seas, but now I'm on a quest for revenge. Ever fought a pirate captain with a steamboat?",
+        "I'm curious to see how my vengeance quest ends. Maybe with a steam-powered cannonball to their ship!",
     ],
     (5, 9, 5): [
     ],
@@ -951,6 +962,7 @@ ALL_COMMENTS = {
     (6, 5, 5): [
     ],
     (6, 6, 0): [
+        "I went from debating in palaces to commanding in the wild. My word is still law, anywhere."
     ],
     (6, 6, 1): [
     ],
@@ -1241,6 +1253,7 @@ ALL_COMMENTS = {
     (8, 8, 0): [
     ],
     (8, 8, 1): [
+        "I used to watch stars, now I'm collecting good deeds. Brightening my own galaxy, one act at a time!"
     ],
     (8, 8, 2): [
     ],
@@ -1393,6 +1406,7 @@ ALL_COMMENTS = {
     (9, 9, 4): [
     ],
     (9, 9, 5): [
+        "I can predict the future, but I still can't find the courage to talk to my crew about it."
     ],
 }
 
@@ -1405,6 +1419,7 @@ BG01_TOGGLE_TOP = 280
 BG02_TOGGLE_TOP = 340
 
 HUMAN_IN_BOX_OFFSET = (92, 128)
+HUMAN_WIDTH = 256
 NUM_HUMANS = 8
 
 TIMER_INTERVAL = 1 * 1000 # new comment every 10s
@@ -1513,6 +1528,36 @@ def draw_path():
             texture_rect.topleft = (x * PATH_SPRITE_SIZE, y * PATH_SPRITE_SIZE)
             screen.blit(dirt_texture, texture_rect)
 
+def wrap_text(text, font, max_width):
+    words = text.split()
+    lines = []
+    current_line = []
+
+    for word in words:
+        test_line = current_line + [word]
+        test_size = font.size(' '.join(test_line))
+
+        if test_size[0] <= max_width:
+            current_line.append(word)
+        else:
+            lines.append(' '.join(current_line))
+            current_line = [word]
+
+    if current_line:
+        lines.append(' '.join(current_line))
+
+    return lines
+
+def render_and_display_wrapped_text(text, font, max_width, starting_pos):
+    wrapped_lines = wrap_text(text, font, max_width)
+    rendered_lines = [font.render(line, True, BLACK) for line in wrapped_lines]
+
+    y = 0 # starting y position
+
+    for rendered_line in rendered_lines:
+        screen.blit(rendered_line, (starting_pos[0], y + starting_pos[1]))
+        y += font.get_linesize()
+
 def draw_biomes():
     for i, obj in enumerate(biomes):
         pygame.draw.rect(screen, WHITE, obj["rect"])
@@ -1531,8 +1576,7 @@ def draw_biomes():
                 screen.blit(flipped_image, (obj["rect"].left + BIOME_MARGIN, obj["rect"].top + BIOME_HEIGHT // 4))
 
             if obj["comment"] != "":
-                comment = comment_font.render(obj["comment"], True, BLACK)
-                screen.blit(comment, (obj["rect"].left + BIOME_MARGIN, obj["rect"].top + BIOME_MARGIN))
+                render_and_display_wrapped_text(obj["comment"], comment_font, BIOME_WIDTH - HUMAN_WIDTH, (obj["rect"].left + BIOME_MARGIN, obj["rect"].top + BIOME_MARGIN))
 
 def draw_back_button():
     pygame.draw.rect(screen, GRAY, (SCREEN_WIDTH - BUTTON_WIDTH, SCREEN_HEIGHT - BUTTON_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT))
