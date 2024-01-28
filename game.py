@@ -79,7 +79,8 @@ PERSONALITY_TOGGLE_TOP = 160
 BG01_TOGGLE_TOP = 280
 BG02_TOGGLE_TOP = 340
 
-NUM_HUMANS = 1
+HUMAN_IN_BOX_OFFSET = (92, 128)
+NUM_HUMANS = 2
 
 # Colors
 WHITE = (255, 255, 255)
@@ -94,6 +95,9 @@ pygame.display.set_caption("AI Laughs At You")
 # Load the dirt texture
 dirt_texture = pygame.image.load("dirt.png")
 texture_rect = dirt_texture.get_rect()
+
+# Laugh box image
+laugh_box = pygame.image.load("laugh-box-scaled.png")
 
 # Arrow rects
 personality_down_arrow = pygame.Rect(TOGGLES_DOWN_LEFT, PERSONALITY_TOGGLE_TOP, TOGGLES_WIDTH, TOGGLES_HEIGHT)
@@ -137,12 +141,11 @@ def load_humans(num_humans):
 # Game state
 grid_view = True
 cur_human = 0
+cur_biome = 0
 
 biomes = create_biomes()
 
 humans = load_humans(NUM_HUMANS)
-
-laugh_box = pygame.image.load("laugh-box-scaled.png")
 
 current_personality_idx = 0
 current_bg01_idx = 0
@@ -202,7 +205,7 @@ def draw_options():
 def draw_human_edit_screen():
     screen.fill(WHITE)
 
-    screen.blit(humans[cur_human], (48, 128))
+    screen.blit(humans[cur_human], HUMAN_IN_BOX_OFFSET)
     screen.blit(laugh_box, (0, 0))
 
     draw_options()
@@ -228,6 +231,7 @@ def main():
                     for i, rect in enumerate(biomes):
                         if rect.collidepoint(event.pos):
                             print(f"Biome {i} clicked!")
+                            cur_biome = i
                             grid_view = False
                 else: # Laugh Box
                     current_personality_idx = check_option(event, personality_down_arrow, personality_up_arrow, current_personality_idx , PERSONALITIES)
