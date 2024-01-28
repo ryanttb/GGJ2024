@@ -24,6 +24,37 @@ BIOME_WIDTH = 608
 BIOME_HEIGHT = 152
 BIOME_MARGIN = 20  # Margin between biomes
 
+PERSONALITIES = [
+    "ANGRY",
+    "SAD",
+    "DISAPPOINTED",
+    "JOVIAL",
+    "MYSTERIOUS",
+    "CURIOUS",
+    "DOMINATING",
+    "BOLD"
+    "EXTROVERTED",
+    "INTROVERTED",
+    "SOCIABLE",
+    "LOYAL",
+    "AGREEABLE",
+    "CONSCIENTIOUS",
+    "NEUROTIC",
+    "PLAYFUL",
+    "LOVING",
+    "OPTIMISTIC",
+    "PESSIMISTIC",
+    "TECHNICAL",
+    "SPORTY",
+    "LUDDITE",
+]
+
+TOGGLES_DOWN_LEFT = 600
+TOGGLES_UP_LEFT = 1000
+PERSONALITY_TOGGLE_TOP = 160
+BG01_TOGGLE_TOP = 280
+BG02_TOGGLE_TOP = 340
+
 NUM_HUMANS = 1
 
 # Colors
@@ -79,6 +110,10 @@ humans = load_humans(NUM_HUMANS)
 
 laugh_box = pygame.image.load("laugh-box-scaled.png")
 
+current_personality_idx = 1
+current_background01_idx = 0
+current_background02_idx = 0
+
 def draw_path():
     for x in range(SCREEN_WIDTH // PATH_SPRITE_SIZE):
         for y in range(SCREEN_HEIGHT // PATH_SPRITE_SIZE):
@@ -95,12 +130,33 @@ def draw_back_button():
     text = font.render("DONE", True, BLACK)
     screen.blit(text, (SCREEN_WIDTH - BUTTON_WIDTH + 20, SCREEN_HEIGHT - BUTTON_HEIGHT + 10))
 
+def draw_option_buttons(top):
+    # Draw left arrow button
+    pygame.draw.polygon(screen, GRAY, [(TOGGLES_DOWN_LEFT, top + 20), (TOGGLES_DOWN_LEFT + 20, top), (TOGGLES_DOWN_LEFT + 20, top + 40)])
+    
+    # Draw right arrow button
+    pygame.draw.polygon(screen, GRAY, [(TOGGLES_UP_LEFT + 20, top + 20), (TOGGLES_UP_LEFT, top), (TOGGLES_UP_LEFT, top + 40)])
+    
+def draw_options():
+    font = pygame.font.Font(None, 36)
+
+    screen.blit(font.render("PERSONALITY", True, BLACK), (640, 128))
+    personality_text = font.render(PERSONALITIES[current_personality_idx], True, GRAY)
+    screen.blit(personality_text, (640, 168))
+
+    screen.blit(font.render("BACKGROUND", True, BLACK), (640, 256))
+
+    draw_option_buttons(PERSONALITY_TOGGLE_TOP)
+    draw_option_buttons(BG01_TOGGLE_TOP)
+    draw_option_buttons(BG02_TOGGLE_TOP)
+
 def draw_human_edit_screen():
     screen.fill(WHITE)
-    # Add elements for the new screen as needed
 
     screen.blit(humans[cur_human], (48, 128))
     screen.blit(laugh_box, (0, 0))
+
+    draw_options()
 
     draw_back_button()
 
