@@ -1,9 +1,6 @@
 import pygame
 import sys
 
-# don't ruin my project, it's not worth it
-# export GITHUB_TOKEN=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
-
 # Initialize Pygame
 pygame.init()
 
@@ -121,7 +118,7 @@ def create_biomes():
                 (x, y),
                 (BIOME_WIDTH, BIOME_HEIGHT)
             )
-            biomes.append(rect)
+            biomes.append({"idx": (row * BIOME_GRID_COLS + col), "rect": rect, "human": -1})
     return biomes
 
 def load_humans(num_humans):
@@ -132,7 +129,6 @@ def load_humans(num_humans):
         print(filename)
 
         image = pygame.image.load(filename)
-        #image.set_colorkey((255, 255, 255))
         humans.append(image)
 
     return humans
@@ -141,7 +137,7 @@ def load_humans(num_humans):
 # Game state
 grid_view = True
 cur_human = 0
-cur_biome = 0
+cur_biome = -1
 
 biomes = create_biomes()
 
@@ -169,8 +165,20 @@ def draw_path():
             screen.blit(dirt_texture, texture_rect)
 
 def draw_biomes():
-    for rect in biomes:
-        pygame.draw.rect(screen, WHITE, rect)
+    for obj in biomes:
+        pygame.draw.rect(screen, WHITE, obj["rect"])
+        if obj["human"] != -1:
+            image = humans[obj["human"]]
+            desired_height = obj["rect"].height // 2
+            original_width, original_height = image.get_size()
+            aspect_ratio = original_width / original_height
+            new_width = int(desired_height * aspect_ratio)
+            scaled_image = pygame.transform.scale(image, (new_width, desired_height))
+
+            if (obj["idx"] % 2) == 0:
+                screen.blit(scaled_image, (obj["rect"].left + BIOME_WIDTH - new_width, obj["rect"].top + BIOME_HEIGHT // 4))
+            else:
+                screen.blit(scaled_image, (obj["rect"].left, obj["rect"].top + BIOME_HEIGHT // 4))
 
 def draw_back_button():
     pygame.draw.rect(screen, GRAY, (SCREEN_WIDTH - BUTTON_WIDTH, SCREEN_HEIGHT - BUTTON_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT))
@@ -214,6 +222,7 @@ def draw_human_edit_screen():
 
 def main():
     global grid_view
+    global cur_human
     global current_personality_idx
     global current_bg01_idx
     global current_bg02_idx
@@ -228,11 +237,12 @@ def main():
             # Check for mouse clicks on biomes
             elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 if grid_view:
-                    for i, rect in enumerate(biomes):
-                        if rect.collidepoint(event.pos):
-                            print(f"Biome {i} clicked!")
-                            cur_biome = i
-                            grid_view = False
+                    if cur_human != NUM_HUMANS:
+                        for i, obj in enumerate(biomes):
+                            if obj["rect"].collidepoint(event.pos):
+                                print(f"Biome {i} clicked!")
+                                cur_biome = i
+                                grid_view = False
                 else: # Laugh Box
                     current_personality_idx = check_option(event, personality_down_arrow, personality_up_arrow, current_personality_idx , PERSONALITIES)
                     current_bg01_idx = check_option(event, bg01_down_arrow, bg01_up_arrow, current_bg01_idx , BG01S)
@@ -240,6 +250,8 @@ def main():
 
                     mouse_x, mouse_y = pygame.mouse.get_pos()
                     if SCREEN_WIDTH - BUTTON_WIDTH <= mouse_x <= SCREEN_WIDTH and SCREEN_HEIGHT - BUTTON_HEIGHT <= mouse_y <= SCREEN_HEIGHT:
+                        biomes[cur_biome]["human"] = cur_human
+                        cur_human += 1
                         grid_view = True
 
         if grid_view:
