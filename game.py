@@ -68,6 +68,10 @@ BG02S = [
     "WITH PROPHECY POWERS",
 ]
 
+ALL_COMMENTS = {
+    (0, 0, 0): "is this thing on"
+}
+
 TOGGLES_WIDTH = 50
 TOGGLES_HEIGHT = 50
 TOGGLES_DOWN_LEFT = 600
@@ -77,7 +81,7 @@ BG01_TOGGLE_TOP = 280
 BG02_TOGGLE_TOP = 340
 
 HUMAN_IN_BOX_OFFSET = (92, 128)
-NUM_HUMANS = 2
+NUM_HUMANS = 8
 
 # Colors
 WHITE = (255, 255, 255)
@@ -118,14 +122,19 @@ def create_biomes():
                 (x, y),
                 (BIOME_WIDTH, BIOME_HEIGHT)
             )
-            biomes.append({"idx": (row * BIOME_GRID_COLS + col), "rect": rect, "human": -1})
+            biomes.append({
+                "rect": rect, 
+                "human": -1,
+                "personality": (-1, -1, -1)
+            })
     return biomes
 
 def load_humans(num_humans):
     humans = []
 
     for i in range(1, num_humans + 1):
-        filename = f"human-{i:03d}.png"
+        file_i = i % 2
+        filename = f"human-{file_i:03d}.png"
         print(filename)
 
         image = pygame.image.load(filename)
@@ -143,9 +152,9 @@ biomes = create_biomes()
 
 humans = load_humans(NUM_HUMANS)
 
-current_personality_idx = 0
-current_bg01_idx = 0
-current_bg02_idx = 0
+cur_personality_idx = 0
+cur_bg01_idx = 0
+cur_bg02_idx = 0
 
 def check_option(event, down, up, idx, values):
     if down.collidepoint(event.pos):
@@ -165,7 +174,7 @@ def draw_path():
             screen.blit(dirt_texture, texture_rect)
 
 def draw_biomes():
-    for obj in biomes:
+    for i, obj in enumerate(biomes):
         pygame.draw.rect(screen, WHITE, obj["rect"])
         if obj["human"] != -1:
             image = humans[obj["human"]]
@@ -175,10 +184,11 @@ def draw_biomes():
             new_width = int(desired_height * aspect_ratio)
             scaled_image = pygame.transform.scale(image, (new_width, desired_height))
 
-            if (obj["idx"] % 2) == 0:
-                screen.blit(scaled_image, (obj["rect"].left + BIOME_WIDTH - new_width, obj["rect"].top + BIOME_HEIGHT // 4))
+            if (i % 2) == 0:
+                screen.blit(scaled_image, (obj["rect"].left + BIOME_WIDTH - new_width - BIOME_MARGIN, obj["rect"].top + BIOME_HEIGHT // 4))
             else:
-                screen.blit(scaled_image, (obj["rect"].left, obj["rect"].top + BIOME_HEIGHT // 4))
+                flipped_image = pygame.transform.flip(scaled_image, True, False)
+                screen.blit(flipped_image, (obj["rect"].left + BIOME_MARGIN, obj["rect"].top + BIOME_HEIGHT // 4))
 
 def draw_back_button():
     pygame.draw.rect(screen, GRAY, (SCREEN_WIDTH - BUTTON_WIDTH, SCREEN_HEIGHT - BUTTON_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT))
@@ -197,13 +207,13 @@ def draw_options():
     font = pygame.font.Font(None, 36)
 
     screen.blit(font.render("PERSONALITY", True, BLACK), (640, 128))
-    personality_text = font.render(PERSONALITIES[current_personality_idx], True, GRAY)
+    personality_text = font.render(PERSONALITIES[cur_personality_idx], True, GRAY)
     screen.blit(personality_text, (640, 168))
 
     screen.blit(font.render("BACKGROUND", True, BLACK), (640, 256))
-    bg01_text = font.render(BG01S[current_bg01_idx], True, GRAY)
+    bg01_text = font.render(BG01S[cur_bg01_idx], True, GRAY)
     screen.blit(bg01_text, (640, 290))
-    bg02_text = font.render(BG02S[current_bg02_idx], True, GRAY)
+    bg02_text = font.render(BG02S[cur_bg02_idx], True, GRAY)
     screen.blit(bg02_text, (640, 350))
 
     draw_option_buttons(personality_down_arrow, personality_up_arrow)
@@ -223,9 +233,9 @@ def draw_human_edit_screen():
 def main():
     global grid_view
     global cur_human
-    global current_personality_idx
-    global current_bg01_idx
-    global current_bg02_idx
+    global cur_personality_idx
+    global cur_bg01_idx
+    global cur_bg02_idx
 
     running = True
 
@@ -243,14 +253,16 @@ def main():
                                 print(f"Biome {i} clicked!")
                                 cur_biome = i
                                 grid_view = False
+
                 else: # Laugh Box
-                    current_personality_idx = check_option(event, personality_down_arrow, personality_up_arrow, current_personality_idx , PERSONALITIES)
-                    current_bg01_idx = check_option(event, bg01_down_arrow, bg01_up_arrow, current_bg01_idx , BG01S)
-                    current_bg02_idx = check_option(event, bg02_down_arrow, bg02_up_arrow, current_bg02_idx , BG02S)
+                    cur_personality_idx = check_option(event, personality_down_arrow, personality_up_arrow, cur_personality_idx , PERSONALITIES)
+                    cur_bg01_idx = check_option(event, bg01_down_arrow, bg01_up_arrow, cur_bg01_idx , BG01S)
+                    cur_bg02_idx = check_option(event, bg02_down_arrow, bg02_up_arrow, cur_bg02_idx , BG02S)
 
                     mouse_x, mouse_y = pygame.mouse.get_pos()
                     if SCREEN_WIDTH - BUTTON_WIDTH <= mouse_x <= SCREEN_WIDTH and SCREEN_HEIGHT - BUTTON_HEIGHT <= mouse_y <= SCREEN_HEIGHT:
                         biomes[cur_biome]["human"] = cur_human
+                        biomes[cur_biome]["personality"] = (cur_personality_idx, cur_bg01_idx, cur_bg02_idx)
                         cur_human += 1
                         grid_view = True
 
@@ -268,4 +280,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
