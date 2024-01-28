@@ -22,6 +22,8 @@ BIOME_WIDTH = 608
 BIOME_HEIGHT = 152
 BIOME_MARGIN = 20  # Margin between biomes
 
+AI_FONT_COLOR = (255, 255, 255)  # White
+
 # Only 48 possible combiniations, need to increast this substantially
 PERSONALITIES = [
     "ANGRY",        # 00
@@ -599,6 +601,12 @@ options_font = pygame.font.Font(None, 36)
 # Comment font
 comment_font = pygame.font.Font(None, 24)
 
+# Create a font object using a font that includes emoji characters
+# sudo apt-get install fonts-noto-color-emoji
+ai_font_path = "/usr/share/fonts/truetype/noto/NotoColorEmoji.ttf"  # Adjust the path as needed
+ai_font_size = 36
+ai_font = pygame.font.Font(ai_font_path, ai_font_size)
+
 # Laugh box image
 laugh_box = pygame.image.load("laugh-box-scaled.png")
 
@@ -732,8 +740,18 @@ def draw_biomes():
 
             if obj["comment"] != "":
                 render_and_display_wrapped_text(i % 2, obj["comment"], comment_font, BIOME_WIDTH - HUMAN_WIDTH, (obj["rect"].left + BIOME_MARGIN, obj["rect"].top + BIOME_MARGIN))
-                #comment = comment_font.render(obj["comment"], True, BLACK)
-                #screen.blit(comment, (obj["rect"].left + BIOME_MARGIN, obj["rect"].top + BIOME_MARGIN))
+
+def draw_laugh_o_tron():
+    text = "😆"
+    text_surface = ai_font.render(text, True, AI_FONT_COLOR)
+
+    # Calculate the position to center the text horizontally
+    text_rect = text_surface.get_rect()
+    text_rect.centerx = SCREEN_WIDTH // 2
+    text_rect.y = 120  # You can adjust the Y-coordinate to control the vertical position
+
+    # Blit the text onto the screen
+    screen.blit(text_surface, text_rect)
 
 def draw_back_button():
     pygame.draw.rect(screen, GRAY, (SCREEN_WIDTH - BUTTON_WIDTH, SCREEN_HEIGHT - BUTTON_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT))
@@ -844,6 +862,8 @@ def main():
             screen.fill(WHITE)
             draw_path()
             draw_biomes()
+
+            draw_laugh_o_tron()
         else:
             draw_human_edit_screen()
 
