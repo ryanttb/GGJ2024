@@ -24,15 +24,15 @@ BIOME_MARGIN = 20  # Margin between biomes
 
 PERSONALITIES = [
     "ANGRY",        # 00
-    "SAD",          # 01
-    "DISAPPOINTED", # 02
-    "JOVIAL",       # 03
-    "MYSTERIOUS",   # 04
-    "CURIOUS",      # 05
-    "DOMINATING",   # 06
-    "SPORTY",       # 07
-    "EXTROVERTED",  # 08
-    "INTROVERTED",  # 09
+    "JOVIAL",       # 01
+    "MYSTERIOUS",   # 02
+    #"SAD",          # 03
+    #"CURIOUS",      # 04
+    #"DOMINATING",   # 05
+    #"SPORTY",       # 06
+    #"EXTROVERTED",  # 07
+    #"INTROVERTED",  # 08
+    #"DISAPPOINTED", # 09
     #"SOCIABLE",     # 10
     #"LOYAL",        # 11
     #"AGREEABLE",    # 12
@@ -50,24 +50,24 @@ PERSONALITIES = [
 
 BG01S = [
     "CIRCUS PERFORMER", #00
-    "ALCHEMIST",        #01
-    "ORPHAN",           #02
-    "ASTRONAUT",        #03
-    "NOBLE",            #04
-    "ARTIST",           #05
-    "DIPLOMAT",         #06
-    "GLADIATOR",        #07
-    "ASTRONOMER",       #08
-    "STEAMBOAT CAPTAIN",#09
+    "ARTIST",           #01
+    "DIPLOMAT",         #02
+    "STEAMBOAT CAPTAIN",#03
+    #"ASTRONAUT",        #04
+    #"NOBLE",            #05
+    #"ALCHEMIST",        #06
+    #"ORPHAN",           #07
+    #"GLADIATOR",        #08
+    #"ASTRONOMER",       #09
 ]
 
 BG02S = [
     "TURNED ADVENTURER",    #00
-    "SEEKING REDEMPTION",   #01
-    "RAISED BY WOLVES",     #02 
-    "TURNED REBEL LEADER",  #03
-    "SEEKING VENGEANCE",    #04
-    "WITH PROPHECY POWERS", #05
+    "RAISED BY WOLVES",     #01 
+    "TURNED REBEL LEADER",  #02
+    "SEEKING VENGEANCE",    #03
+    #"SEEKING REDEMPTION",   #05
+    #"WITH PROPHECY POWERS", #06
 ]
 
 ALL_COMMENTS = {
@@ -80,148 +80,186 @@ ALL_COMMENTS = {
 		"Step right up, folks! Watch me turn these foes into confetti with my trusty sword! It's all in a day's work for a circus performer turned adventurer!",
     ],
     (0, 0, 1): [
-        "I swear, if I don't find redemption soon, I'll unleash my circus lion on you!"
+        "I may have been raised by wolves, but I'll be damned if I let anyone treat me like an animal!",
+
+        "My circus skills might seem wild, but they're nothing compared to the instincts I learned in the wilderness!",
+
+        "Being raised by wolves toughened me up for anything life throws at me, whether it's performing under the big top or battling monsters in the forest.",
+
+        "I howled at the moon with my wolf family, and now I'll howl with fury at anyone who stands in my way!",
+
+        "I may have the heart of a circus performer, but I've got the ferocity of a wolf. Together, I'm a force to be reckoned with!",
     ],
     (0, 0, 2): [
+        "I once commanded the spotlight in the circus ring, but now I lead a different kind of show – a rebellion against the tyrants!",
+
+        "I've swapped my juggling balls for battle tactics, and these rebels are about to witness the greatest performance of their lives!",
+
+        "In the circus, I entertained the masses. Now, I inspire them to rise up and fight for their freedom!",
+
+        "Circus tricks may have been my past, but leading this rebellion is my destiny!",
+
+        "I used to tame lions, but now I'm taming a nation's hunger for justice. Watch out, oppressors, this circus performer is leading the charge!",
     ],
     (0, 0, 3): [
-    ],
-    (0, 0, 4): [
-    ],
-    (0, 0, 5): [
-        "My prophecy powers foretell a clown car full of angry clowns. Be afraid!"
+        "They thought they could ruin my circus and get away with it? Well, they're about to witness the most spectacular revenge act of all time!",
+
+        "The circus was my life, and they took it away from me. Now, it's time to make them pay for every laugh they stole.",
+
+        "I used to bring joy to crowds, but now I'll bring vengeance to those who wronged me!",
+
+        "They clowned around with my dreams, but now it's their turn to face the consequences!",
+
+        "I've traded in my circus costume for a cloak of vengeance, and I won't stop until I've settled the score!",
     ],
     (0, 1, 0): [
+        "My anger fuels my creativity, and now I'm channeling it into the most epic adventures the world has ever seen!",
+
+        "I used to paint with a brush, but now I'm sketching my adventures with a sword in hand!",
+
+        "The canvas couldn't contain my passion anymore, so I decided to paint my own destiny as an adventurer.",
+
+        "They called me a temperamental artist, but they've yet to see the true masterpiece of my life – my adventures!",
+
+        "I may have left my art studio behind, but the world itself has become my canvas, and my adventures are my greatest works of art!",
     ],
     (0, 1, 1): [
+        "Raised by wolves, I bring the raw, untamed fury of the wilderness into my art and my adventures.",
+
+        "The howling of wolves echoes in my heart, guiding me as I create and conquer in this wild world.",
+
+        "In the solitude of the wolf pack, I found a connection to nature that now shapes my artistic expression and my daring adventures.",
+
+        "They called my art 'savage,' but I'll show them what true savagery looks like when I'm on a quest!",
+
+        "The wilderness and artistry run deep in my veins, and now I'm using both to leave my mark on the world as an adventurer."
     ],
     (0, 1, 2): [
+        "I once painted my emotions, but now I lead a rebellion, and every stroke of my rebellion is a brushstroke against oppression.",
+
+        "Art used to be my sanctuary, but now I've turned my canvas into a battle standard, and my rebellion will be a masterpiece of justice.",
+
+        "They thought I was just an artist, but little did they know, my artistry would inspire a revolution.",
+
+        "I've traded my easel for a sword, and my passion for justice now drives my rebellion forward!",
+
+        "My art was a whisper, but my rebellion is a roar that will echo through the annals of history!",
     ],
     (0, 1, 3): [
-    ],
-    (0, 1, 4): [
-    ],
-    (0, 1, 5): [
+        "My brush once painted serenity, but now it will craft a portrait of vengeance so vivid it will haunt those who wronged me.",
+
+        "My art used to be a reflection of my soul, but now it's a mirror that shows my enemies the face of their own destruction.",
+
+        "They thought they could destroy my creations and get away with it? Well, they're about to witness the wrath of a scorned artist!",
+
+        "Every stroke of my revenge is a stroke of retribution, and I won't rest until my masterpiece of vengeance is complete.",
+
+        "The art of revenge is a canvas I'm eager to paint upon, and the colors I'll use will be shades of despair and regret!",
     ],
     (0, 2, 0): [
+        "Diplomacy failed to resolve the issues, so now I'm taking matters into my own hands as an adventurer!",
+
+        "I once negotiated peace, but now I'm prepared to fight for it, one battle at a time.",
+
+        "They said I was too soft-spoken for the political arena, but they've yet to witness the determination of an angry diplomat turned adventurer.",
+
+        "The world of diplomacy may be filled with empty promises, but in the world of adventure, I'll create my destiny.",
+
+        "I've left the conference room behind for the thrill of the unknown. As an adventurer, I'll find the answers diplomacy couldn't provide.",
     ],
     (0, 2, 1): [
+        "Raised by wolves, I bring the wisdom of the pack into the world of diplomacy. Now, my negotiations have the strength of the wild!",
+
+        "The howls of my wolf family echo in my heart as I navigate the political wilderness, seeking to bring balance and justice.",
+
+        "The diplomatic world may be a jungle, but the lessons I learned from my wolf pack have made me a fearless negotiator.",
+
+        "They thought I was just a soft-spoken diplomat, but little did they know that the wilderness taught me the true art of diplomacy.",
+
+        "The diplomatic game may be a cunning one, but my upbringing with wolves has taught me to be a cunning diplomat, ready to pounce when necessary!",
     ],
     (0, 2, 2): [
+        "I once brokered peace, but now I lead a rebellion against tyranny. My negotiations have turned into battles for justice!",
+
+        "Diplomacy couldn't bring the change we needed, so I'm using my skills to lead a rebellion that will shake the foundations of power.",
+
+        "They underestimated the passion of a diplomat pushed too far. Now, I'm leading a rebellion that will rewrite the rules.",
+
+        "My diplomacy may have been refined, but my resolve as a rebel leader is unyielding. It's time to overthrow the oppressors.",
+
+        "I used to negotiate behind closed doors, but now I negotiate with fists and swords, leading this rebellion to a brighter future!",
     ],
     (0, 2, 3): [
-    ],
-    (0, 2, 4): [
-    ],
-    (0, 2, 5): [
-    ],
-    (0, 3, 0): [
-    ],
-    (0, 3, 1): [
-    ],
-    (0, 3, 2): [
-    ],
-    (0, 3, 3): [
-    ],
-    (0, 3, 4): [
-    ],
-    (0, 3, 5): [
+        "They thought diplomacy was my only weapon, but now they'll see the ferocity of a diplomat seeking vengeance!",
+
+        "My diplomatic skills were once used to foster peace, but now they're directed towards a different goal – revenge!",
+
+        "They crossed the wrong diplomat, and now I'll use every resource at my disposal to exact my vengeance.",
+
+        "I once negotiated treaties, but now I'll negotiate the terms of their downfall!",
+
+        "I'll use the art of diplomacy to weave a web of vengeance so intricate, they won't even see it coming!",
     ],
     (0, 3, 0): [
+        "I once navigated the rivers with my steamboat, but now I'm charting new courses as a fearless adventurer!",
+
+        "The river used to be my domain, but now I seek uncharted waters and untamed lands in my quest for adventure.",
+
+        "They called me the captain of the steamboat, but I've set sail on the grandest adventure of my life!",
+
+        "From the steam to the wild, I've traded in my captain's hat for an adventurer's heart.",
+
+        "My steamboat used to be my home, but now the world itself is my domain, and adventure is my calling!",
     ],
     (0, 3, 1): [
+        "Raised by wolves and captain of the steamboat – a unique blend of wilderness instincts and river mastery!",
+
+        "My life was divided between the untamed wilderness and the mighty river, and now I combine both as an adventurer.",
+
+        "I may have been raised by wolves, but I ruled the river with my steamboat, and now I rule the wilderness with my anger.",
+
+        "The river currents couldn't wash away the wildness in my blood. Now, my adventures are as unpredictable as the wolves that raised me.",
+
+        "The wolves taught me survival, and the steamboat taught me mastery. Together, they make me a force to be reckoned with in the world of adventure!",
     ],
     (0, 3, 2): [
+        "I once commanded the mighty steamboat, but now I'm steering the ship of rebellion against those who oppress us!",
+
+        "I've traded my steamboat's helm for a rebellion's banner, and I'll lead our cause with the same determination I had navigating treacherous waters.",
+
+        "The river was my kingdom, but now I'm on a mission to reclaim our land from the tyrants who seized it.",
+
+        "From the helm of a steamboat to the helm of a revolution – they never saw this transformation coming!",
+
+        "I used to transport cargo, but now I transport the hopes and dreams of those who fight alongside me in this rebellion!",
     ],
     (0, 3, 3): [
-    ],
-    (0, 3, 4): [
-    ],
-    (0, 3, 5): [
-    ],
-    (0, 4, 0): [
-    ],
-    (0, 4, 1): [
-    ],
-    (0, 4, 2): [
-    ],
-    (0, 4, 3): [
-    ],
-    (0, 4, 4): [
-    ],
-    (0, 4, 5): [
-    ],
-    (0, 5, 0): [
-    ],
-    (0, 5, 1): [
-    ],
-    (0, 5, 2): [
-    ],
-    (0, 5, 3): [
-    ],
-    (0, 5, 4): [
-    ],
-    (0, 5, 5): [
-    ],
-    (0, 6, 0): [
-    ],
-    (0, 6, 1): [
-    ],
-    (0, 6, 2): [
-    ],
-    (0, 6, 3): [
-    ],
-    (0, 6, 4): [
-    ],
-    (0, 6, 5): [
-    ],
-    (0, 7, 0): [
-    ],
-    (0, 7, 1): [
-    ],
-    (0, 7, 2): [
-    ],
-    (0, 7, 3): [
-    ],
-    (0, 7, 4): [
-    ],
-    (0, 7, 5): [
-    ],
-    (0, 8, 0): [
-    ],
-    (0, 8, 1): [
-    ],
-    (0, 8, 2): [
-    ],
-    (0, 8, 3): [
-    ],
-    (0, 8, 4): [
-    ],
-    (0, 8, 5): [
-    ],
-    (0, 9, 0): [
-    ],
-    (0, 9, 1): [
-    ],
-    (0, 9, 2): [
-    ],
-    (0, 9, 3): [
-    ],
-    (0, 9, 4): [
-    ],
-    (0, 9, 5): [
+        "They thought they could sink my steamboat and get away with it? Well, they're about to face the wrath of a steamboat captain seeking vengeance!",
+
+        "I navigated the waters with finesse, but now I'll navigate the treacherous path of vengeance to make them pay for what they did!",
+
+        "The river may have been calm under my command, but now I'm unleashing a storm of vengeance upon those who wronged me.",
+
+        "I'll steamroll my way through obstacles to exact my revenge, just like I steered my steamboat through rough currents!",
+
+        "The steam that once powered my boat now fuels the fires of vengeance burning within me. They won't escape the reckoning!",
     ],
     (1, 0, 0): [
+        "The circus was all laughter and smiles, and now I'm bringing that same joy to the world as an adventurer!",
+
+        "I might not have a trapeze anymore, but my acrobatic skills sure come in handy during our daring quests!",
+
+        "Life under the big top was a blast, but life on the open road as an adventurer? That's a whole new level of excitement!",
+
+        "I used to make people laugh with my clown act, and now I'm making them laugh with my daring escapades!",
+
+        "They say life is a circus, and I'm just taking that circus on the road, one adventure at a time!",
     ],
     (1, 0, 1): [
     ],
     (1, 0, 2): [
     ],
     (1, 0, 3): [
-    ],
-    (1, 0, 4): [
-    ],
-    (1, 0, 5): [
     ],
     (1, 1, 0): [
     ],
@@ -232,10 +270,6 @@ ALL_COMMENTS = {
     ],
     (1, 1, 3): [
     ],
-    (1, 1, 4): [
-    ],
-    (1, 1, 5): [
-    ],
     (1, 2, 0): [
     ],
     (1, 2, 1): [
@@ -244,10 +278,6 @@ ALL_COMMENTS = {
     ],
     (1, 2, 3): [
     ],
-    (1, 2, 4): [
-    ],
-    (1, 2, 5): [
-    ],
     (1, 3, 0): [
     ],
     (1, 3, 1): [
@@ -256,10 +286,6 @@ ALL_COMMENTS = {
     ],
     (1, 3, 3): [
     ],
-    (1, 3, 4): [
-    ],
-    (1, 3, 5): [
-    ],
     (1, 3, 0): [
     ],
     (1, 3, 1): [
@@ -267,10 +293,6 @@ ALL_COMMENTS = {
     (1, 3, 2): [
     ],
     (1, 3, 3): [
-    ],
-    (1, 3, 4): [
-    ],
-    (1, 3, 5): [
     ],
     (1, 4, 0): [
     ],
@@ -280,10 +302,6 @@ ALL_COMMENTS = {
     ],
     (1, 4, 3): [
     ],
-    (1, 4, 4): [
-    ],
-    (1, 4, 5): [
-    ],
     (1, 5, 0): [
     ],
     (1, 5, 1): [
@@ -291,10 +309,6 @@ ALL_COMMENTS = {
     (1, 5, 2): [
     ],
     (1, 5, 3): [
-    ],
-    (1, 5, 4): [
-    ],
-    (1, 5, 5): [
     ],
     (1, 6, 0): [
     ],
@@ -304,10 +318,6 @@ ALL_COMMENTS = {
     ],
     (1, 6, 3): [
     ],
-    (1, 6, 4): [
-    ],
-    (1, 6, 5): [
-    ],
     (1, 7, 0): [
     ],
     (1, 7, 1): [
@@ -315,10 +325,6 @@ ALL_COMMENTS = {
     (1, 7, 2): [
     ],
     (1, 7, 3): [
-    ],
-    (1, 7, 4): [
-    ],
-    (1, 7, 5): [
     ],
     (1, 8, 0): [
     ],
@@ -328,22 +334,6 @@ ALL_COMMENTS = {
     ],
     (1, 8, 3): [
     ],
-    (1, 8, 4): [
-    ],
-    (1, 8, 5): [
-    ],
-    (1, 9, 0): [
-    ],
-    (1, 9, 1): [
-    ],
-    (1, 9, 2): [
-    ],
-    (1, 9, 3): [
-    ],
-    (1, 9, 4): [
-    ],
-    (1, 9, 5): [
-    ],
     (2, 0, 0): [
     ],
     (2, 0, 1): [
@@ -351,10 +341,6 @@ ALL_COMMENTS = {
     (2, 0, 2): [
     ],
     (2, 0, 3): [
-    ],
-    (2, 0, 4): [
-    ],
-    (2, 0, 5): [
     ],
     (2, 1, 0): [
     ],
@@ -364,10 +350,6 @@ ALL_COMMENTS = {
     ],
     (2, 1, 3): [
     ],
-    (2, 1, 4): [
-    ],
-    (2, 1, 5): [
-    ],
     (2, 2, 0): [
     ],
     (2, 2, 1): [
@@ -376,10 +358,6 @@ ALL_COMMENTS = {
     ],
     (2, 2, 3): [
     ],
-    (2, 2, 4): [
-    ],
-    (2, 2, 5): [
-    ],
     (2, 3, 0): [
     ],
     (2, 3, 1): [
@@ -388,10 +366,6 @@ ALL_COMMENTS = {
     ],
     (2, 3, 3): [
     ],
-    (2, 3, 4): [
-    ],
-    (2, 3, 5): [
-    ],
     (2, 3, 0): [
     ],
     (2, 3, 1): [
@@ -399,10 +373,6 @@ ALL_COMMENTS = {
     (2, 3, 2): [
     ],
     (2, 3, 3): [
-    ],
-    (2, 3, 4): [
-    ],
-    (2, 3, 5): [
     ],
     (2, 4, 0): [
     ],
@@ -412,10 +382,6 @@ ALL_COMMENTS = {
     ],
     (2, 4, 3): [
     ],
-    (2, 4, 4): [
-    ],
-    (2, 4, 5): [
-    ],
     (2, 5, 0): [
     ],
     (2, 5, 1): [
@@ -423,10 +389,6 @@ ALL_COMMENTS = {
     (2, 5, 2): [
     ],
     (2, 5, 3): [
-    ],
-    (2, 5, 4): [
-    ],
-    (2, 5, 5): [
     ],
     (2, 6, 0): [
     ],
@@ -436,10 +398,6 @@ ALL_COMMENTS = {
     ],
     (2, 6, 3): [
     ],
-    (2, 6, 4): [
-    ],
-    (2, 6, 5): [
-    ],
     (2, 7, 0): [
     ],
     (2, 7, 1): [
@@ -448,10 +406,6 @@ ALL_COMMENTS = {
     ],
     (2, 7, 3): [
     ],
-    (2, 7, 4): [
-    ],
-    (2, 7, 5): [
-    ],
     (2, 8, 0): [
     ],
     (2, 8, 1): [
@@ -459,954 +413,6 @@ ALL_COMMENTS = {
     (2, 8, 2): [
     ],
     (2, 8, 3): [
-    ],
-    (2, 8, 4): [
-    ],
-    (2, 8, 5): [
-    ],
-    (2, 9, 0): [
-    ],
-    (2, 9, 1): [
-    ],
-    (2, 9, 2): [
-    ],
-    (2, 9, 3): [
-    ],
-    (2, 9, 4): [
-    ],
-    (2, 9, 5): [
-    ],
-    (3, 0, 0): [
-    ],
-    (3, 0, 1): [
-    ],
-    (3, 0, 2): [
-    ],
-    (3, 0, 3): [
-    ],
-    (3, 0, 4): [
-    ],
-    (3, 0, 5): [
-    ],
-    (3, 1, 0): [
-    ],
-    (3, 1, 1): [
-    ],
-    (3, 1, 2): [
-    ],
-    (3, 1, 3): [
-    ],
-    (3, 1, 4): [
-    ],
-    (3, 1, 5): [
-    ],
-    (3, 2, 0): [
-    ],
-    (3, 2, 1): [
-    ],
-    (3, 2, 2): [
-    ],
-    (3, 2, 3): [
-    ],
-    (3, 2, 4): [
-    ],
-    (3, 2, 5): [
-    ],
-    (3, 3, 0): [
-    ],
-    (3, 3, 1): [
-    ],
-    (3, 3, 2): [
-    ],
-    (3, 3, 3): [
-        "From the stars to the bars! Leading a rebellion with a smile, one small step at a time!"
-    ],
-    (3, 3, 4): [
-    ],
-    (3, 3, 5): [
-    ],
-    (3, 3, 0): [
-    ],
-    (3, 3, 1): [
-    ],
-    (3, 3, 2): [
-    ],
-    (3, 3, 3): [
-    ],
-    (3, 3, 4): [
-    ],
-    (3, 3, 5): [
-    ],
-    (3, 4, 0): [
-    ],
-    (3, 4, 1): [
-    ],
-    (3, 4, 2): [
-    ],
-    (3, 4, 3): [
-    ],
-    (3, 4, 4): [
-    ],
-    (3, 4, 5): [
-    ],
-    (3, 5, 0): [
-    ],
-    (3, 5, 1): [
-    ],
-    (3, 5, 2): [
-    ],
-    (3, 5, 3): [
-    ],
-    (3, 5, 4): [
-    ],
-    (3, 5, 5): [
-    ],
-    (3, 6, 0): [
-    ],
-    (3, 6, 1): [
-    ],
-    (3, 6, 2): [
-    ],
-    (3, 6, 3): [
-    ],
-    (3, 6, 4): [
-    ],
-    (3, 6, 5): [
-    ],
-    (3, 7, 0): [
-    ],
-    (3, 7, 1): [
-    ],
-    (3, 7, 2): [
-    ],
-    (3, 7, 3): [
-    ],
-    (3, 7, 4): [
-    ],
-    (3, 7, 5): [
-    ],
-    (3, 8, 0): [
-    ],
-    (3, 8, 1): [
-    ],
-    (3, 8, 2): [
-    ],
-    (3, 8, 3): [
-    ],
-    (3, 8, 4): [
-    ],
-    (3, 8, 5): [
-    ],
-    (3, 9, 0): [
-    ],
-    (3, 9, 1): [
-    ],
-    (3, 9, 2): [
-    ],
-    (3, 9, 3): [
-    ],
-    (3, 9, 4): [
-    ],
-    (3, 9, 5): [
-    ],
-    (4, 0, 0): [
-    ],
-    (4, 0, 1): [
-    ],
-    (4, 0, 2): [
-    ],
-    (4, 0, 3): [
-    ],
-    (4, 0, 4): [
-    ],
-    (4, 0, 5): [
-    ],
-    (4, 1, 0): [
-    ],
-    (4, 1, 1): [
-    ],
-    (4, 1, 2): [
-    ],
-    (4, 1, 3): [
-    ],
-    (4, 1, 4): [
-    ],
-    (4, 1, 5): [
-    ],
-    (4, 2, 0): [
-    ],
-    (4, 2, 1): [
-    ],
-    (4, 2, 2): [
-    ],
-    (4, 2, 3): [
-    ],
-    (4, 2, 4): [
-    ],
-    (4, 2, 5): [
-    ],
-    (4, 3, 0): [
-    ],
-    (4, 3, 1): [
-    ],
-    (4, 3, 2): [
-    ],
-    (4, 3, 3): [
-    ],
-    (4, 3, 4): [
-    ],
-    (4, 3, 5): [
-    ],
-    (4, 3, 0): [
-    ],
-    (4, 3, 1): [
-    ],
-    (4, 3, 2): [
-    ],
-    (4, 3, 3): [
-    ],
-    (4, 3, 4): [
-    ],
-    (4, 3, 5): [
-    ],
-    (4, 4, 0): [
-    ],
-    (4, 4, 1): [
-    ],
-    (4, 4, 2): [
-    ],
-    (4, 4, 3): [
-    ],
-    (4, 4, 4): [
-        "A noble by day, a vengeance seeker by night. My life’s more twisted than a royal family tree."
-    ],
-    (4, 4, 5): [
-    ],
-    (4, 5, 0): [
-    ],
-    (4, 5, 1): [
-    ],
-    (4, 5, 2): [
-    ],
-    (4, 5, 3): [
-    ],
-    (4, 5, 4): [
-    ],
-    (4, 5, 5): [
-    ],
-    (4, 6, 0): [
-    ],
-    (4, 6, 1): [
-    ],
-    (4, 6, 2): [
-    ],
-    (4, 6, 3): [
-    ],
-    (4, 6, 4): [
-    ],
-    (4, 6, 5): [
-    ],
-    (4, 7, 0): [
-    ],
-    (4, 7, 1): [
-    ],
-    (4, 7, 2): [
-    ],
-    (4, 7, 3): [
-    ],
-    (4, 7, 4): [
-    ],
-    (4, 7, 5): [
-    ],
-    (4, 8, 0): [
-    ],
-    (4, 8, 1): [
-    ],
-    (4, 8, 2): [
-    ],
-    (4, 8, 3): [
-    ],
-    (4, 8, 4): [
-    ],
-    (4, 8, 5): [
-    ],
-    (4, 9, 0): [
-    ],
-    (4, 9, 1): [
-    ],
-    (4, 9, 2): [
-    ],
-    (4, 9, 3): [
-    ],
-    (4, 9, 4): [
-    ],
-    (4, 9, 5): [
-    ],
-    (5, 0, 0): [
-    ],
-    (5, 0, 1): [
-    ],
-    (5, 0, 2): [
-    ],
-    (5, 0, 3): [
-    ],
-    (5, 0, 4): [
-    ],
-    (5, 0, 5): [
-    ],
-    (5, 1, 0): [
-    ],
-    (5, 1, 1): [
-    ],
-    (5, 1, 2): [
-    ],
-    (5, 1, 3): [
-    ],
-    (5, 1, 4): [
-    ],
-    (5, 1, 5): [
-    ],
-    (5, 2, 0): [
-    ],
-    (5, 2, 1): [
-    ],
-    (5, 2, 2): [
-    ],
-    (5, 2, 3): [
-    ],
-    (5, 2, 4): [
-    ],
-    (5, 2, 5): [
-    ],
-    (5, 3, 0): [
-    ],
-    (5, 3, 1): [
-    ],
-    (5, 3, 2): [
-    ],
-    (5, 3, 3): [
-    ],
-    (5, 3, 4): [
-    ],
-    (5, 3, 5): [
-    ],
-    (5, 3, 0): [
-    ],
-    (5, 3, 1): [
-    ],
-    (5, 3, 2): [
-    ],
-    (5, 3, 3): [
-    ],
-    (5, 3, 4): [
-    ],
-    (5, 3, 5): [
-    ],
-    (5, 4, 0): [
-    ],
-    (5, 4, 1): [
-    ],
-    (5, 4, 2): [
-    ],
-    (5, 4, 3): [
-    ],
-    (5, 4, 4): [
-    ],
-    (5, 4, 5): [
-    ],
-    (5, 5, 0): [
-    ],
-    (5, 5, 1): [
-    ],
-    (5, 5, 2): [
-    ],
-    (5, 5, 3): [
-    ],
-    (5, 5, 4): [
-    ],
-    (5, 5, 5): [
-        "I see a future where my art is famous... or was that just another odd dream?"
-    ],
-    (5, 6, 0): [
-    ],
-    (5, 6, 1): [
-    ],
-    (5, 6, 2): [
-    ],
-    (5, 6, 3): [
-    ],
-    (5, 6, 4): [
-    ],
-    (5, 6, 5): [
-    ],
-    (5, 7, 0): [
-    ],
-    (5, 7, 1): [
-    ],
-    (5, 7, 2): [
-    ],
-    (5, 7, 3): [
-    ],
-    (5, 7, 4): [
-    ],
-    (5, 7, 5): [
-    ],
-    (5, 8, 0): [
-    ],
-    (5, 8, 1): [
-    ],
-    (5, 8, 2): [
-    ],
-    (5, 8, 3): [
-    ],
-    (5, 8, 4): [
-    ],
-    (5, 8, 5): [
-    ],
-    (5, 9, 0): [
-    ],
-    (5, 9, 1): [
-    ],
-    (5, 9, 2): [
-    ],
-    (5, 9, 3): [
-    ],
-    (5, 9, 4): [
-        "I've sailed the seas, but now I'm on a quest for revenge. Ever fought a pirate captain with a steamboat?",
-        "I'm curious to see how my vengeance quest ends. Maybe with a steam-powered cannonball to their ship!",
-    ],
-    (5, 9, 5): [
-    ],
-    (6, 0, 0): [
-    ],
-    (6, 0, 1): [
-    ],
-    (6, 0, 2): [
-    ],
-    (6, 0, 3): [
-    ],
-    (6, 0, 4): [
-    ],
-    (6, 0, 5): [
-    ],
-    (6, 1, 0): [
-    ],
-    (6, 1, 1): [
-    ],
-    (6, 1, 2): [
-    ],
-    (6, 1, 3): [
-    ],
-    (6, 1, 4): [
-    ],
-    (6, 1, 5): [
-    ],
-    (6, 2, 0): [
-    ],
-    (6, 2, 1): [
-    ],
-    (6, 2, 2): [
-    ],
-    (6, 2, 3): [
-    ],
-    (6, 2, 4): [
-    ],
-    (6, 2, 5): [
-    ],
-    (6, 3, 0): [
-    ],
-    (6, 3, 1): [
-    ],
-    (6, 3, 2): [
-    ],
-    (6, 3, 3): [
-    ],
-    (6, 3, 4): [
-    ],
-    (6, 3, 5): [
-    ],
-    (6, 3, 0): [
-    ],
-    (6, 3, 1): [
-    ],
-    (6, 3, 2): [
-    ],
-    (6, 3, 3): [
-    ],
-    (6, 3, 4): [
-    ],
-    (6, 3, 5): [
-    ],
-    (6, 4, 0): [
-    ],
-    (6, 4, 1): [
-    ],
-    (6, 4, 2): [
-    ],
-    (6, 4, 3): [
-    ],
-    (6, 4, 4): [
-    ],
-    (6, 4, 5): [
-    ],
-    (6, 5, 0): [
-    ],
-    (6, 5, 1): [
-    ],
-    (6, 5, 2): [
-    ],
-    (6, 5, 3): [
-    ],
-    (6, 5, 4): [
-    ],
-    (6, 5, 5): [
-    ],
-    (6, 6, 0): [
-        "I went from debating in palaces to commanding in the wild. My word is still law, anywhere."
-    ],
-    (6, 6, 1): [
-    ],
-    (6, 6, 2): [
-    ],
-    (6, 6, 3): [
-    ],
-    (6, 6, 4): [
-    ],
-    (6, 6, 5): [
-    ],
-    (6, 7, 0): [
-    ],
-    (6, 7, 1): [
-    ],
-    (6, 7, 2): [
-    ],
-    (6, 7, 3): [
-    ],
-    (6, 7, 4): [
-    ],
-    (6, 7, 5): [
-    ],
-    (6, 8, 0): [
-    ],
-    (6, 8, 1): [
-    ],
-    (6, 8, 2): [
-    ],
-    (6, 8, 3): [
-    ],
-    (6, 8, 4): [
-    ],
-    (6, 8, 5): [
-    ],
-    (6, 9, 0): [
-    ],
-    (6, 9, 1): [
-    ],
-    (6, 9, 2): [
-    ],
-    (6, 9, 3): [
-    ],
-    (6, 9, 4): [
-    ],
-    (6, 9, 5): [
-    ],
-    (7, 0, 0): [
-    ],
-    (7, 0, 1): [
-    ],
-    (7, 0, 2): [
-    ],
-    (7, 0, 3): [
-    ],
-    (7, 0, 4): [
-    ],
-    (7, 0, 5): [
-    ],
-    (7, 1, 0): [
-    ],
-    (7, 1, 1): [
-    ],
-    (7, 1, 2): [
-    ],
-    (7, 1, 3): [
-    ],
-    (7, 1, 4): [
-    ],
-    (7, 1, 5): [
-    ],
-    (7, 2, 0): [
-    ],
-    (7, 2, 1): [
-    ],
-    (7, 2, 2): [
-    ],
-    (7, 2, 3): [
-    ],
-    (7, 2, 4): [
-    ],
-    (7, 2, 5): [
-    ],
-    (7, 3, 0): [
-    ],
-    (7, 3, 1): [
-    ],
-    (7, 3, 2): [
-    ],
-    (7, 3, 3): [
-    ],
-    (7, 3, 4): [
-    ],
-    (7, 3, 5): [
-    ],
-    (7, 3, 0): [
-    ],
-    (7, 3, 1): [
-    ],
-    (7, 3, 2): [
-    ],
-    (7, 3, 3): [
-    ],
-    (7, 3, 4): [
-    ],
-    (7, 3, 5): [
-    ],
-    (7, 4, 0): [
-    ],
-    (7, 4, 1): [
-    ],
-    (7, 4, 2): [
-    ],
-    (7, 4, 3): [
-    ],
-    (7, 4, 4): [
-    ],
-    (7, 4, 5): [
-    ],
-    (7, 5, 0): [
-    ],
-    (7, 5, 1): [
-    ],
-    (7, 5, 2): [
-    ],
-    (7, 5, 3): [
-    ],
-    (7, 5, 4): [
-    ],
-    (7, 5, 5): [
-    ],
-    (7, 6, 0): [
-    ],
-    (7, 6, 1): [
-    ],
-    (7, 6, 2): [
-    ],
-    (7, 6, 3): [
-    ],
-    (7, 6, 4): [
-    ],
-    (7, 6, 5): [
-    ],
-    (7, 7, 0): [
-    ],
-    (7, 7, 1): [
-    ],
-    (7, 7, 2): [
-    ],
-    (7, 7, 3): [
-    ],
-    (7, 7, 4): [
-    ],
-    (7, 7, 5): [
-    ],
-    (7, 8, 0): [
-    ],
-    (7, 8, 1): [
-    ],
-    (7, 8, 2): [
-    ],
-    (7, 8, 3): [
-    ],
-    (7, 8, 4): [
-    ],
-    (7, 8, 5): [
-    ],
-    (7, 9, 0): [
-    ],
-    (7, 9, 1): [
-    ],
-    (7, 9, 2): [
-    ],
-    (7, 9, 3): [
-    ],
-    (7, 9, 4): [
-    ],
-    (7, 9, 5): [
-    ],
-    (8, 0, 0): [
-    ],
-    (8, 0, 1): [
-    ],
-    (8, 0, 2): [
-    ],
-    (8, 0, 3): [
-    ],
-    (8, 0, 4): [
-    ],
-    (8, 0, 5): [
-    ],
-    (8, 1, 0): [
-    ],
-    (8, 1, 1): [
-    ],
-    (8, 1, 2): [
-    ],
-    (8, 1, 3): [
-    ],
-    (8, 1, 4): [
-    ],
-    (8, 1, 5): [
-    ],
-    (8, 2, 0): [
-    ],
-    (8, 2, 1): [
-    ],
-    (8, 2, 2): [
-    ],
-    (8, 2, 3): [
-    ],
-    (8, 2, 4): [
-    ],
-    (8, 2, 5): [
-    ],
-    (8, 3, 0): [
-    ],
-    (8, 3, 1): [
-    ],
-    (8, 3, 2): [
-    ],
-    (8, 3, 3): [
-    ],
-    (8, 3, 4): [
-    ],
-    (8, 3, 5): [
-    ],
-    (8, 3, 0): [
-    ],
-    (8, 3, 1): [
-    ],
-    (8, 3, 2): [
-    ],
-    (8, 3, 3): [
-    ],
-    (8, 3, 4): [
-    ],
-    (8, 3, 5): [
-    ],
-    (8, 4, 0): [
-    ],
-    (8, 4, 1): [
-    ],
-    (8, 4, 2): [
-    ],
-    (8, 4, 3): [
-    ],
-    (8, 4, 4): [
-    ],
-    (8, 4, 5): [
-    ],
-    (8, 5, 0): [
-    ],
-    (8, 5, 1): [
-    ],
-    (8, 5, 2): [
-    ],
-    (8, 5, 3): [
-    ],
-    (8, 5, 4): [
-    ],
-    (8, 5, 5): [
-    ],
-    (8, 6, 0): [
-    ],
-    (8, 6, 1): [
-    ],
-    (8, 6, 2): [
-    ],
-    (8, 6, 3): [
-    ],
-    (8, 6, 4): [
-    ],
-    (8, 6, 5): [
-    ],
-    (8, 7, 0): [
-    ],
-    (8, 7, 1): [
-    ],
-    (8, 7, 2): [
-    ],
-    (8, 7, 3): [
-    ],
-    (8, 7, 4): [
-    ],
-    (8, 7, 5): [
-    ],
-    (8, 8, 0): [
-    ],
-    (8, 8, 1): [
-        "I used to watch stars, now I'm collecting good deeds. Brightening my own galaxy, one act at a time!"
-    ],
-    (8, 8, 2): [
-    ],
-    (8, 8, 3): [
-    ],
-    (8, 8, 4): [
-    ],
-    (8, 8, 5): [
-    ],
-    (8, 9, 0): [
-    ],
-    (8, 9, 1): [
-    ],
-    (8, 9, 2): [
-    ],
-    (8, 9, 3): [
-    ],
-    (8, 9, 4): [
-    ],
-    (8, 9, 5): [
-    ],
-    (9, 0, 0): [
-    ],
-    (9, 0, 1): [
-    ],
-    (9, 0, 2): [
-    ],
-    (9, 0, 3): [
-    ],
-    (9, 0, 4): [
-    ],
-    (9, 0, 5): [
-    ],
-    (9, 1, 0): [
-    ],
-    (9, 1, 1): [
-    ],
-    (9, 1, 2): [
-    ],
-    (9, 1, 3): [
-    ],
-    (9, 1, 4): [
-    ],
-    (9, 1, 5): [
-    ],
-    (9, 2, 0): [
-    ],
-    (9, 2, 1): [
-    ],
-    (9, 2, 2): [
-    ],
-    (9, 2, 3): [
-    ],
-    (9, 2, 4): [
-    ],
-    (9, 2, 5): [
-    ],
-    (9, 3, 0): [
-    ],
-    (9, 3, 1): [
-    ],
-    (9, 3, 2): [
-    ],
-    (9, 3, 3): [
-    ],
-    (9, 3, 4): [
-    ],
-    (9, 3, 5): [
-    ],
-    (9, 3, 0): [
-    ],
-    (9, 3, 1): [
-    ],
-    (9, 3, 2): [
-    ],
-    (9, 3, 3): [
-    ],
-    (9, 3, 4): [
-    ],
-    (9, 3, 5): [
-    ],
-    (9, 4, 0): [
-    ],
-    (9, 4, 1): [
-    ],
-    (9, 4, 2): [
-    ],
-    (9, 4, 3): [
-    ],
-    (9, 4, 4): [
-    ],
-    (9, 4, 5): [
-    ],
-    (9, 5, 0): [
-    ],
-    (9, 5, 1): [
-    ],
-    (9, 5, 2): [
-    ],
-    (9, 5, 3): [
-    ],
-    (9, 5, 4): [
-    ],
-    (9, 5, 5): [
-    ],
-    (9, 6, 0): [
-    ],
-    (9, 6, 1): [
-    ],
-    (9, 6, 2): [
-    ],
-    (9, 6, 3): [
-    ],
-    (9, 6, 4): [
-    ],
-    (9, 6, 5): [
-    ],
-    (9, 7, 0): [
-    ],
-    (9, 7, 1): [
-    ],
-    (9, 7, 2): [
-    ],
-    (9, 7, 3): [
-    ],
-    (9, 7, 4): [
-    ],
-    (9, 7, 5): [
-    ],
-    (9, 8, 0): [
-    ],
-    (9, 8, 1): [
-    ],
-    (9, 8, 2): [
-    ],
-    (9, 8, 3): [
-    ],
-    (9, 8, 4): [
-    ],
-    (9, 8, 5): [
-    ],
-    (9, 9, 0): [
-    ],
-    (9, 9, 1): [
-    ],
-    (9, 9, 2): [
-    ],
-    (9, 9, 3): [
-    ],
-    (9, 9, 4): [
-    ],
-    (9, 9, 5): [
-        "I can predict the future, but I still can't find the courage to talk to my crew about it."
     ],
 }
 
