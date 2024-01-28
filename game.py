@@ -69,7 +69,9 @@ BG02S = [
 ]
 
 ALL_COMMENTS = {
-    (0, 0, 0): "is this thing on"
+    (0, 0, 0): [
+        "is this thing on"
+    ]
 }
 
 TOGGLES_WIDTH = 50
@@ -83,6 +85,9 @@ BG02_TOGGLE_TOP = 340
 HUMAN_IN_BOX_OFFSET = (92, 128)
 NUM_HUMANS = 8
 
+TIMER_INTERVAL = 1 * 1000 # new comment every 10s
+COMMENT_TIMER_EVENT = pygame.USEREVENT + 1
+
 # Colors
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
@@ -93,9 +98,19 @@ BROWN = (139, 69, 19)
 screen = pygame.display.set_mode(SCREEN_RECT)
 pygame.display.set_caption("AI Laughs At You")
 
+# Comments and timer stuff
+start_tiem = pygame.time.get_ticks()
+pygame.time.set_timer(COMMENT_TIMER_EVENT, TIMER_INTERVAL)
+
 # Load the dirt texture
 dirt_texture = pygame.image.load("dirt.png")
 texture_rect = dirt_texture.get_rect()
+
+# General font for the options
+options_font = pygame.font.Font(None, 36)
+
+# Comment font
+comment_font = pygame.font.Font(None, 24)
 
 # Laugh box image
 laugh_box = pygame.image.load("laugh-box-scaled.png")
@@ -125,7 +140,8 @@ def create_biomes():
             biomes.append({
                 "rect": rect, 
                 "human": -1,
-                "personality": (-1, -1, -1)
+                "personality": (-1, -1, -1),
+                "comment": "placeholder"
             })
     return biomes
 
@@ -190,6 +206,10 @@ def draw_biomes():
                 flipped_image = pygame.transform.flip(scaled_image, True, False)
                 screen.blit(flipped_image, (obj["rect"].left + BIOME_MARGIN, obj["rect"].top + BIOME_HEIGHT // 4))
 
+            if obj["comment"] != "":
+                comment = comment_font.render(obj["comment"], True, BLACK)
+                screen.blit(comment, (obj["rect"].left + BIOME_MARGIN, obj["rect"].top + BIOME_MARGIN))
+
 def draw_back_button():
     pygame.draw.rect(screen, GRAY, (SCREEN_WIDTH - BUTTON_WIDTH, SCREEN_HEIGHT - BUTTON_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT))
     font = pygame.font.Font(None, 36)
@@ -204,16 +224,14 @@ def draw_option_buttons(down, up):
     pygame.draw.polygon(screen, GRAY, [(up.left + 20, up.top + 20), (up.left, up.top), (up.left, up.top + 40)])
     
 def draw_options():
-    font = pygame.font.Font(None, 36)
-
-    screen.blit(font.render("PERSONALITY", True, BLACK), (640, 128))
-    personality_text = font.render(PERSONALITIES[cur_personality_idx], True, GRAY)
+    screen.blit(options_font.render("PERSONALITY", True, BLACK), (640, 128))
+    personality_text = options_font.render(PERSONALITIES[cur_personality_idx], True, GRAY)
     screen.blit(personality_text, (640, 168))
 
-    screen.blit(font.render("BACKGROUND", True, BLACK), (640, 256))
-    bg01_text = font.render(BG01S[cur_bg01_idx], True, GRAY)
+    screen.blit(options_font.render("BACKGROUND", True, BLACK), (640, 256))
+    bg01_text = options_font.render(BG01S[cur_bg01_idx], True, GRAY)
     screen.blit(bg01_text, (640, 290))
-    bg02_text = font.render(BG02S[cur_bg02_idx], True, GRAY)
+    bg02_text = options_font.render(BG02S[cur_bg02_idx], True, GRAY)
     screen.blit(bg02_text, (640, 350))
 
     draw_option_buttons(personality_down_arrow, personality_up_arrow)
@@ -230,6 +248,21 @@ def draw_human_edit_screen():
 
     draw_back_button()
 
+# Add a random comment to a zooman
+def add_comment():
+    for i, obj in enumerate(biomes):
+        if obj["human"] != -1:
+            comment = ALL_COMMENTS.get(obj["personality"])
+            if comment is not None:
+                print(comment[0])
+                obj["comment"] = comment[0]
+
+
+    return
+
+def draw_comments():
+    return
+    
 def main():
     global grid_view
     global cur_human
@@ -244,6 +277,9 @@ def main():
             if event.type == pygame.QUIT:
                 running = False
 
+            elif event.type == COMMENT_TIMER_EVENT and grid_view:
+                add_comment()
+
             # Check for mouse clicks on biomes
             elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 if grid_view:
@@ -251,8 +287,14 @@ def main():
                         for i, obj in enumerate(biomes):
                             if obj["rect"].collidepoint(event.pos):
                                 print(f"Biome {i} clicked!")
-                                cur_biome = i
-                                grid_view = False
+                                if obj["human"] == -1:
+                                    cur_biome = i
+                                    grid_view = False
+                                else:
+                                    print(obj["personality"])
+                                    comment = ALL_COMMENTS.get(obj["personality"])
+                                    if comment is not None:
+                                        print(comment[0])
 
                 else: # Laugh Box
                     cur_personality_idx = check_option(event, personality_down_arrow, personality_up_arrow, cur_personality_idx , PERSONALITIES)
