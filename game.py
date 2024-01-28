@@ -742,7 +742,7 @@ def draw_biomes():
                 render_and_display_wrapped_text(i % 2, obj["comment"], comment_font, BIOME_WIDTH - HUMAN_WIDTH, (obj["rect"].left + BIOME_MARGIN, obj["rect"].top + BIOME_MARGIN))
 
 def draw_laugh_o_tron():
-    text = "😆"
+    text = "🥱"
     text_surface = ai_font.render(text, True, AI_FONT_COLOR)
 
     # Calculate the position to center the text horizontally
