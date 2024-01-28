@@ -1548,14 +1548,19 @@ def wrap_text(text, font, max_width):
 
     return lines
 
-def render_and_display_wrapped_text(text, font, max_width, starting_pos):
+# side is 0 = left, 1 = right
+def render_and_display_wrapped_text(side, text, font, max_width, starting_pos):
     wrapped_lines = wrap_text(text, font, max_width)
     rendered_lines = [font.render(line, True, BLACK) for line in wrapped_lines]
 
     y = 0 # starting y position
 
     for rendered_line in rendered_lines:
-        screen.blit(rendered_line, (starting_pos[0], y + starting_pos[1]))
+        if side == 0:
+            screen.blit(rendered_line, (starting_pos[0], y + starting_pos[1]))
+        else:
+            screen.blit(rendered_line, (starting_pos[0] + (HUMAN_WIDTH // 4), y + starting_pos[1]))
+
         y += font.get_linesize()
 
 def draw_biomes():
@@ -1576,7 +1581,9 @@ def draw_biomes():
                 screen.blit(flipped_image, (obj["rect"].left + BIOME_MARGIN, obj["rect"].top + BIOME_HEIGHT // 4))
 
             if obj["comment"] != "":
-                render_and_display_wrapped_text(obj["comment"], comment_font, BIOME_WIDTH - HUMAN_WIDTH, (obj["rect"].left + BIOME_MARGIN, obj["rect"].top + BIOME_MARGIN))
+                render_and_display_wrapped_text(i % 2, obj["comment"], comment_font, BIOME_WIDTH - HUMAN_WIDTH, (obj["rect"].left + BIOME_MARGIN, obj["rect"].top + BIOME_MARGIN))
+                #comment = comment_font.render(obj["comment"], True, BLACK)
+                #screen.blit(comment, (obj["rect"].left + BIOME_MARGIN, obj["rect"].top + BIOME_MARGIN))
 
 def draw_back_button():
     pygame.draw.rect(screen, GRAY, (SCREEN_WIDTH - BUTTON_WIDTH, SCREEN_HEIGHT - BUTTON_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT))
