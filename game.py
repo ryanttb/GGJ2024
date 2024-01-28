@@ -1,5 +1,6 @@
-import pygame
 import sys
+import random
+import pygame
 
 # Initialize Pygame
 pygame.init()
@@ -141,7 +142,8 @@ def create_biomes():
                 "rect": rect, 
                 "human": -1,
                 "personality": (-1, -1, -1),
-                "comment": "placeholder"
+                "comment": "",
+                "comment_ttl": -1
             })
     return biomes
 
@@ -252,10 +254,17 @@ def draw_human_edit_screen():
 def add_comment():
     for i, obj in enumerate(biomes):
         if obj["human"] != -1:
-            comment = ALL_COMMENTS.get(obj["personality"])
-            if comment is not None:
-                print(comment[0])
-                obj["comment"] = comment[0]
+            if obj["comment_ttl"] <= 0:
+                comment = ALL_COMMENTS.get(obj["personality"])
+                if comment is not None:
+                    print(comment[0])
+                    obj["comment"] = comment[0]
+                    obj["comment_ttl"] = random.randint(0, 8)
+                break
+            else:
+                obj["comment_ttl"] = obj["comment_ttl"] - 1
+                if obj["comment_ttl"] <= 1:
+                    obj["comment"] = ""
 
 
     return
