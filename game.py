@@ -32,7 +32,7 @@ PERSONALITIES = [
     "MYSTERIOUS",
     "CURIOUS",
     "DOMINATING",
-    "BOLD"
+    "BOLD",
     "EXTROVERTED",
     "INTROVERTED",
     "SOCIABLE",
@@ -49,6 +49,30 @@ PERSONALITIES = [
     "LUDDITE",
 ]
 
+BG01S = [
+    "CIRCUS PERFORMER",
+    "ALCHEMIST",
+    "ORPHAN",
+    "ASTRONAUT",
+    "NOBLE",
+    "ARTIST",
+    "DIPLOMAT",
+    "GLADIATOR",
+    "ASTRONOMER",
+    "STEAMBOAT CAPTAIN",
+]
+
+BG02S = [
+    "TURNED ADVENTURER",
+    "SEEKING REDEMPTION",
+    "RAISED BY THIEVES",
+    "TURNED REBEL LEADER",
+    "SEEKING VENGEANCE",
+    "WITH PROPHECY POWERS",
+]
+
+TOGGLES_WIDTH = 50
+TOGGLES_HEIGHT = 50
 TOGGLES_DOWN_LEFT = 600
 TOGGLES_UP_LEFT = 1000
 PERSONALITY_TOGGLE_TOP = 160
@@ -70,6 +94,16 @@ pygame.display.set_caption("AI Laughs At You")
 # Load the dirt texture
 dirt_texture = pygame.image.load("dirt.png")
 texture_rect = dirt_texture.get_rect()
+
+# Arrow rects
+personality_down_arrow = pygame.Rect(TOGGLES_DOWN_LEFT, PERSONALITY_TOGGLE_TOP, TOGGLES_WIDTH, TOGGLES_HEIGHT)
+personality_up_arrow = pygame.Rect(TOGGLES_UP_LEFT, PERSONALITY_TOGGLE_TOP, TOGGLES_WIDTH, TOGGLES_HEIGHT)
+
+bg01_down_arrow = pygame.Rect(TOGGLES_DOWN_LEFT, BG01_TOGGLE_TOP, TOGGLES_WIDTH, TOGGLES_HEIGHT)
+bg01_up_arrow = pygame.Rect(TOGGLES_UP_LEFT, BG01_TOGGLE_TOP, TOGGLES_WIDTH, TOGGLES_HEIGHT)
+
+bg02_down_arrow = pygame.Rect(TOGGLES_DOWN_LEFT, BG02_TOGGLE_TOP, TOGGLES_WIDTH, TOGGLES_HEIGHT)
+bg02_up_arrow = pygame.Rect(TOGGLES_UP_LEFT, BG02_TOGGLE_TOP, TOGGLES_WIDTH, TOGGLES_HEIGHT)
 
 # Create eight biomes, arranging the second set below the first
 def create_biomes():
@@ -110,9 +144,20 @@ humans = load_humans(NUM_HUMANS)
 
 laugh_box = pygame.image.load("laugh-box-scaled.png")
 
-current_personality_idx = 1
-current_background01_idx = 0
-current_background02_idx = 0
+current_personality_idx = 0
+current_bg01_idx = 0
+current_bg02_idx = 0
+
+def check_option(event, down, up, idx, values):
+    if down.collidepoint(event.pos):
+        if (idx == 0):
+            idx = len(values) - 1
+        else:
+            idx = (idx - 1) % len(values)
+    elif up.collidepoint(event.pos):
+        idx = (idx + 1) % len(values)
+
+    return idx
 
 def draw_path():
     for x in range(SCREEN_WIDTH // PATH_SPRITE_SIZE):
@@ -130,12 +175,12 @@ def draw_back_button():
     text = font.render("DONE", True, BLACK)
     screen.blit(text, (SCREEN_WIDTH - BUTTON_WIDTH + 20, SCREEN_HEIGHT - BUTTON_HEIGHT + 10))
 
-def draw_option_buttons(top):
-    # Draw left arrow button
-    pygame.draw.polygon(screen, GRAY, [(TOGGLES_DOWN_LEFT, top + 20), (TOGGLES_DOWN_LEFT + 20, top), (TOGGLES_DOWN_LEFT + 20, top + 40)])
+def draw_option_buttons(down, up):
+    # Draw toggle down button
+    pygame.draw.polygon(screen, GRAY, [(down.left, down.top + 20), (down.left + 20, down.top), (down.left + 20, down.top + 40)])
     
-    # Draw right arrow button
-    pygame.draw.polygon(screen, GRAY, [(TOGGLES_UP_LEFT + 20, top + 20), (TOGGLES_UP_LEFT, top), (TOGGLES_UP_LEFT, top + 40)])
+    # Draw toggle up button
+    pygame.draw.polygon(screen, GRAY, [(up.left + 20, up.top + 20), (up.left, up.top), (up.left, up.top + 40)])
     
 def draw_options():
     font = pygame.font.Font(None, 36)
@@ -145,10 +190,14 @@ def draw_options():
     screen.blit(personality_text, (640, 168))
 
     screen.blit(font.render("BACKGROUND", True, BLACK), (640, 256))
+    bg01_text = font.render(BG01S[current_bg01_idx], True, GRAY)
+    screen.blit(bg01_text, (640, 290))
+    bg02_text = font.render(BG02S[current_bg02_idx], True, GRAY)
+    screen.blit(bg02_text, (640, 350))
 
-    draw_option_buttons(PERSONALITY_TOGGLE_TOP)
-    draw_option_buttons(BG01_TOGGLE_TOP)
-    draw_option_buttons(BG02_TOGGLE_TOP)
+    draw_option_buttons(personality_down_arrow, personality_up_arrow)
+    draw_option_buttons(bg01_down_arrow, bg01_up_arrow)
+    draw_option_buttons(bg02_down_arrow, bg02_up_arrow)
 
 def draw_human_edit_screen():
     screen.fill(WHITE)
@@ -162,6 +211,9 @@ def draw_human_edit_screen():
 
 def main():
     global grid_view
+    global current_personality_idx
+    global current_bg01_idx
+    global current_bg02_idx
 
     running = True
 
@@ -177,7 +229,11 @@ def main():
                         if rect.collidepoint(event.pos):
                             print(f"Biome {i} clicked!")
                             grid_view = False
-                else:
+                else: # Laugh Box
+                    current_personality_idx = check_option(event, personality_down_arrow, personality_up_arrow, current_personality_idx , PERSONALITIES)
+                    current_bg01_idx = check_option(event, bg01_down_arrow, bg01_up_arrow, current_bg01_idx , BG01S)
+                    current_bg02_idx = check_option(event, bg02_down_arrow, bg02_up_arrow, current_bg02_idx , BG02S)
+
                     mouse_x, mouse_y = pygame.mouse.get_pos()
                     if SCREEN_WIDTH - BUTTON_WIDTH <= mouse_x <= SCREEN_WIDTH and SCREEN_HEIGHT - BUTTON_HEIGHT <= mouse_y <= SCREEN_HEIGHT:
                         grid_view = True
