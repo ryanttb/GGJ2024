@@ -71,7 +71,12 @@ BG02S = [
 
 ALL_COMMENTS = {
     (0, 0, 0): [
-        "is this thing on"
+        "is this thing on",
+        "is this thing even on",
+        "is this on a thing really",
+        "what the actual",
+        "calm a llama down",
+        "how I love les puissants"
     ]
 }
 
@@ -143,7 +148,8 @@ def create_biomes():
                 "human": -1,
                 "personality": (-1, -1, -1),
                 "comment": "",
-                "comment_ttl": -1
+                "comment_ttl": -1,
+                "comment_idx": 0
             })
     return biomes
 
@@ -255,11 +261,13 @@ def add_comment():
     for i, obj in enumerate(biomes):
         if obj["human"] != -1:
             if obj["comment_ttl"] <= 0:
-                comment = ALL_COMMENTS.get(obj["personality"])
-                if comment is not None:
-                    print(comment[0])
-                    obj["comment"] = comment[0]
+                comments = ALL_COMMENTS.get(obj["personality"])
+                if comments is not None:
+                    print(obj["comment_idx"])
+                    print(comments[obj["comment_idx"]])
+                    obj["comment"] = comments[obj["comment_idx"]]
                     obj["comment_ttl"] = random.randint(0, 8)
+                    obj["comment_idx"] = (obj["comment_idx"] + 1) % len(comments)
                 break
             else:
                 obj["comment_ttl"] = obj["comment_ttl"] - 1
@@ -269,9 +277,6 @@ def add_comment():
 
     return
 
-def draw_comments():
-    return
-    
 def main():
     global grid_view
     global cur_human
